@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, type ChartOptions } from 'chart.js';
-import { generateColors } from '../lib/utils'; // adjust path as needed
 
-// Register Chart.js components
+import { generateColors } from '../lib/utils';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type PortfolioItem = {
