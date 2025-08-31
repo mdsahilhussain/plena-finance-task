@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Coin } from '../../../types/redux.types';
+import type { Coin } from '../../../types/redux';
 import { portfolioActionTypes, type PortfolioActionType } from './portfolio.types';
 
 interface PortfolioState {
