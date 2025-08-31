@@ -10,12 +10,21 @@ interface OptimizedImageProps {
   className?: string;
 }
 
-const OptimizedImage = ({ src, alt, width, height, priority, className }: OptimizedImageProps) => {
+const OptimizedImage: React.FC<OptimizedImageProps> = ({
+  src,
+  alt,
+  width,
+  height,
+  priority,
+  className,
+}) => {
   return (
     <div
-      className={`overflow-hidden ${width ? `w-[${width}px]` : 'w-auto'} ${
+      className={cn(
+        'overflow-hidden',
+        width ? `w-[${width}px]` : 'w-auto',
         height ? `h-[${height}px]` : 'h-auto'
-      }`}
+      )}
     >
       <img
         src={src}
