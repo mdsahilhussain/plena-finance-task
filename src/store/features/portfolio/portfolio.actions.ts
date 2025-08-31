@@ -1,7 +1,7 @@
  import { portfolioActionTypes } from './portfolio.types';
 import { coinActionTypes } from '../coin/coin.types';
 import type { AppDispatch, RootState } from '../..';
-import type { Coin } from '../../../types/redux.types';
+import type { Coin } from '../../../types/redux';
 
 export const addToWatchlist = (coins: Coin[]) => (dispatch: AppDispatch) => {
   const enrichedCoins: Coin[] = coins.map((coin) => ({

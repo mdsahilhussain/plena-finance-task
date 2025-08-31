@@ -1,5 +1,5 @@
-import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
-import { thunk } from 'redux-thunk';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware, type UnknownAction } from 'redux';
+import  {thunk as thunkMiddleware, type ThunkDispatch}  from 'redux-thunk';
 
 import { portfolioReducer } from './features/portfolio/portfolio.reducer';
 import { coinsReducer } from './features/coin/coin.reducer';
@@ -54,7 +54,7 @@ const rootReducer = combineReducers({
   portfolio: portfolioReducer,
 });
 
-export const store = createStore(rootReducer, loadState(), applyMiddleware(thunk));
+export const store = createStore(rootReducer, loadState(), applyMiddleware(thunkMiddleware));
 
 // Persist store changes
 store.subscribe(() => {
@@ -63,4 +63,8 @@ store.subscribe(() => {
 
 // Types
 export type RootState = ReturnType<typeof rootReducer>;
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = ThunkDispatch<RootState, unknown, UnknownAction>;
+export type AppStore = typeof store
+
+

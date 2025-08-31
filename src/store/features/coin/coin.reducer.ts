@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { Coin } from '../../../types/redux.types';
+import type { Coin } from '../../../types/redux';
 import { coinActionTypes, type CoinActionTypes } from './coin.types';
 
 interface CoinsState {
