@@ -5,7 +5,7 @@ export interface Coin {
   name: string;
   symbol: string;
   current_price: number;
-  holdings?: number; 
-  value?: number; 
+  holdings: number;
+  value: number;
   [key: string]: any;
 }

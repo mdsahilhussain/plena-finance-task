@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import Button from './ui/button';
+
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchCoins, toggleCoinSelection } from '../store/features/coin/coin.actions';
 import { addToWatchlist } from '../store/features/portfolio/portfolio.actions';
 import OptimizedImage from './ui/optimized-image';
 import { cn } from '../lib/utils';
+import ButtonMemo from './ui/button';
 
 interface ModalProps {
   closeModal: () => void;
@@ -61,6 +62,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal, isModalOpen }) => {
           <div className="flex-shrink-0">
             <input
               type="text"
+              aria-label='Search tokens'
               placeholder="Search tokens (e.g., ETH, SOL)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -89,16 +91,21 @@ const Modal: React.FC<ModalProps> = ({ closeModal, isModalOpen }) => {
                   return (
                     <div
                       key={coin.id}
-                      className={`flex items-center p-3 cursor-pointer rounded-lg mb-2 
-                        ${isSelected ? 'bg-[#A9E8510F] backdrop-blur-2xl' : 'hover:bg-(--bg-secondary)'}
-                        ${isInWatchlist ? 'opacity-50' : ''}`}
+                      className={cn(
+                        'flex items-center p-3 cursor-pointer rounded-lg mb-2 ',
+                        isSelected
+                          ? 'bg-[#A9E8510F] backdrop-blur-2xl'
+                          : 'hover:bg-(--bg-secondary)',
+                        isInWatchlist && 'opacity-50'
+                      )}
                       onClick={() => !isInWatchlist && dispatch(toggleCoinSelection(coin))}
                     >
-                      <img
+                      <OptimizedImage
                         src={coin.image}
                         alt={coin.name}
-                        loading="lazy"
-                        className="w-8 h-8 mr-3"
+                        width={32}
+                        height={32}
+                        className="mr-3"
                       />
                       <div className="flex items-center gap-2 flex-1">
                         <div className="font-medium">{coin.name}</div>
@@ -120,6 +127,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal, isModalOpen }) => {
                         )}
                         <input
                           type="radio"
+                          aria-label='Select coin'
                           checked={isSelected}
                           onChange={() => {}}
                           disabled={isInWatchlist}
@@ -134,7 +142,8 @@ const Modal: React.FC<ModalProps> = ({ closeModal, isModalOpen }) => {
 
           {/* Footer */}
           <div className="flex-shrink-0 bg-(--bg-secondary) rounded-b-xl px-4 py-3 flex justify-end border-t border-(--border)">
-            <Button
+            <ButtonMemo
+              aria-label='Add selected coins to watchlist'
               className={cn(
                 'rounded-lg border',
                 selectedCoins.length === 0
@@ -145,7 +154,7 @@ const Modal: React.FC<ModalProps> = ({ closeModal, isModalOpen }) => {
               onClick={handleAddToWatchlist}
             >
               Add to WatchList
-            </Button>
+            </ButtonMemo>
           </div>
         </div>
       </div>
