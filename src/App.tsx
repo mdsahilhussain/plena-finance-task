@@ -1,7 +1,10 @@
-import './App.css';
+import { AppProviders } from './store/AppProviders';
+import Dashboard from './pages/Dashboard';
 
-function App() {
-  return <></>;
+export default function App() {
+  return (
+    <AppProviders>
+      <Dashboard />
+    </AppProviders>
+  );
 }
-
-export default App;
