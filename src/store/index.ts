@@ -1,11 +1,17 @@
-import { legacy_createStore as createStore, combineReducers, applyMiddleware, type UnknownAction } from 'redux';
-import  {thunk as thunkMiddleware, type ThunkDispatch}  from 'redux-thunk';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  legacy_createStore as createStore,
+  combineReducers,
+  applyMiddleware,
+  type UnknownAction,
+} from 'redux';
+import { thunk as thunkMiddleware, type ThunkDispatch } from 'redux-thunk';
 
 import { portfolioReducer } from './features/portfolio/portfolio.reducer';
 import { coinsReducer } from './features/coin/coin.reducer';
 
 // Load state from localStorage
-const loadState = (): Partial<RootState> => {
+const loadState = (): RootState => {
   try {
     const serializedState = localStorage.getItem('cryptoState');
     if (!serializedState) {
@@ -21,7 +27,7 @@ const loadState = (): Partial<RootState> => {
         lastUpdated: parsed.portfolio?.lastUpdated || null,
       },
       coins: {
-        coins: [], // not persisted
+        coins: [],
         loading: false,
         error: null,
         selectedCoins: parsed.coins?.selectedCoins || [],
@@ -54,7 +60,7 @@ const rootReducer = combineReducers({
   portfolio: portfolioReducer,
 });
 
-export const store = createStore(rootReducer, loadState(), applyMiddleware(thunkMiddleware));
+export const store = createStore(rootReducer, loadState() as any, applyMiddleware(thunkMiddleware));
 
 // Persist store changes
 store.subscribe(() => {
@@ -63,8 +69,5 @@ store.subscribe(() => {
 
 // Types
 export type RootState = ReturnType<typeof rootReducer>;
-// export type AppDispatch = typeof store.dispatch;
 export type AppDispatch = ThunkDispatch<RootState, unknown, UnknownAction>;
-export type AppStore = typeof store
-
-
+export type AppStore = typeof store;

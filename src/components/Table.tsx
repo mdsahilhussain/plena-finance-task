@@ -199,7 +199,7 @@ const Table: React.FC = () => {
                     {isMenuOpen === coin.id && (
                       <div
                         ref={menuRef}
-                        className="absolute right-15 top-11 bg-(--bg-secondary) rounded-lg border border-(--bg-primary) shadow text-sm text-(--text-secondary) font-medium z-50 min-w-[144px] flex flex-col"
+                        className="absolute right-15 top-11 bg-(--bg-secondary) rounded-lg border border-(--bg-primary) shadow text-sm text-(--text-secondary) font-medium z-50 min-w-[144px] md:min-w-[148px] flex flex-col"
                       >
                         <ButtonMemo
                           aria-label="Edit Holdings"
@@ -210,7 +210,7 @@ const Table: React.FC = () => {
                             }));
                             setIsMenuOpen(null);
                           }}
-                          className="gap-2 border-b border-(--border)"
+                          className="gap-2 border-b border-(--border) text-xs md:text-sm"
                         >
                           <OptimizedImage src="/icons/pencil-square.svg" alt="Edit Holdings" />
                           Edit Holdings
@@ -218,7 +218,7 @@ const Table: React.FC = () => {
                         <ButtonMemo
                           aria-label="Remove from Watchlist"
                           onClick={() => dispatch(removeFromWatchlist(coin.id))}
-                          className="gap-2 text-red-400"
+                          className="gap-2 text-red-400 text-xs md:text-sm"
                         >
                           <OptimizedImage src="/icons/trash.svg" alt="Remove Holdings" /> Remove
                         </ButtonMemo>
