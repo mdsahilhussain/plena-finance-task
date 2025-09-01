@@ -54,6 +54,7 @@ const Table: React.FC = () => {
 
   // Handlers
   const handleHoldingsChange = (coinId: string, value: string) => {
+    console.log(value);
     setEditingHoldings((prev) => ({ ...prev, [coinId]: parseFloat(value) }));
   };
 
@@ -158,6 +159,7 @@ const Table: React.FC = () => {
                         />
                         <ButtonMemo
                           aria-label="Save Holding"
+                          onClick={() => handleHoldingsUpdate(coin.id)}
                           className="rounded-lg border text-sm sm:text-base border-[#1F6619] bg-(--neon-green) text-(--text-neon-button)"
                         >
                           Save
