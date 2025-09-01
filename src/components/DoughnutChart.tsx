@@ -2,23 +2,25 @@ import React, { useMemo } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, type ChartOptions } from 'chart.js';
 
-import { generateColors } from '../lib/utils';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type PortfolioItem = {
+  id: string;
   name: string;
+  symbol: string;
+  holdings: number;
   value: number;
 };
 
 interface DoughnutChartProps {
   portfolioData: PortfolioItem[];
+  colors: string[];
 }
 
-const DoughnutChart: React.FC<DoughnutChartProps> = ({ portfolioData }) => {
+const DoughnutChart: React.FC<DoughnutChartProps> = ({ portfolioData, colors }) => {
   const labels = useMemo(() => portfolioData?.map((coin) => coin.name) || [], [portfolioData]);
   const values = useMemo(() => portfolioData?.map((coin) => coin.value) || [], [portfolioData]);
-  const colors = useMemo(() => generateColors(values.length), [values.length]);
 
   const data = useMemo(
     () => ({
