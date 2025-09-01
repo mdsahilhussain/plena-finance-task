@@ -58,10 +58,7 @@ const Dashboard = () => {
   };
 
   const colors = useMemo(() => generateColors(watchlist.length || 0), [watchlist.length]);
-  const total = useMemo(
-    () => watchlist.reduce((acc, c) => acc + (c.value || 0), 0),
-    [watchlist]
-  );
+  const total = useMemo(() => watchlist.reduce((acc, c) => acc + (c.value || 0), 0), [watchlist]);
 
   return (
     <div className="md:p-(--large-page-padding) p-(--small-page-padding)">
@@ -137,8 +134,7 @@ const Dashboard = () => {
                       >
                         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
                           const coin = watchlist[virtualRow.index];
-                          const percentage = ((coin.value! / total) * 100).toFixed(2);
-
+                          const percentage = total === 0 ? 0 : ((coin.value / total) * 100).toFixed(2);
                           return (
                             <div
                               key={virtualRow.key}
@@ -153,7 +149,9 @@ const Dashboard = () => {
                               <p className="text-sm sm:text-base font-medium">
                                 {coin.name} ({coin.symbol.toUpperCase()})
                               </p>
-                              <p className="text-(--text-secondary) text-sm sm:text-base font-medium">{percentage}%</p>
+                              <p className="text-(--text-secondary) text-sm sm:text-base font-medium">
+                                {percentage}%
+                              </p>
                             </div>
                           );
                         })}
@@ -186,7 +184,8 @@ const Dashboard = () => {
                 <ButtonMemo
                   aria-label="Refresh Prices"
                   onClick={handleManualRefresh}
-                  className={'rounded-lg border border-[#0000001F] bg-(--bg-secondary) gap-2'}
+                  disabled={isRefresh}
+                  className={'rounded-lg border border-[#0000001F] bg-(--bg-secondary) gap-2 disabled:cursor-wait disabled:opacity-70'}
                 >
                   <OptimizedImage
                     src="/icons/cached.svg"
@@ -202,7 +201,8 @@ const Dashboard = () => {
               <ButtonMemo
                 aria-label="Refresh Prices"
                 onClick={handleManualRefresh}
-                className="md:hidden bg-(--bg-secondary) rounded-lg border border-[#0000001F]"
+                disabled={isRefresh}
+                className="md:hidden bg-(--bg-secondary) rounded-lg border border-[#0000001F] disabled:cursor-wait disabled:opacity-70"
               >
                 <OptimizedImage
                   src="/icons/cached.svg"
