@@ -26,22 +26,22 @@ This project aims to provide a user-friendly interface for tracking and managing
 
 ## ✨ Features
 
--   **Cryptocurrency Tracking:** Monitor the value of your cryptocurrency holdings in real-time.
--   **Watchlist:** Add coins to a watchlist for easy tracking.
--   **Coin Statistics:** View detailed information about individual cryptocurrencies, including price charts and market data.
--   **Portfolio Management:** Add and remove coins from your portfolio.
--   **Local Storage Persistence:** Portfolio and watchlist data are saved locally using `localStorage`.
--   **Web3 Integration:** Connect your wallet using RainbowKit and Wagmi.
+- **Cryptocurrency Tracking:** Monitor the value of your cryptocurrency holdings in real-time.
+- **Watchlist:** Add coins to a watchlist for easy tracking.
+- **Coin Statistics:** View detailed information about individual cryptocurrencies, including price charts and market data.
+- **Portfolio Management:** Add and remove coins from your portfolio.
+- **Local Storage Persistence:** Portfolio and watchlist data are saved locally using `localStorage`.
+- **Web3 Integration:** Connect your wallet using RainbowKit and Wagmi.
 
 ## 🛠️ Tech Stack
 
-| Frontend      | Backend | Tools           | APIs                                  |
-| :------------ | :------ | :-------------- | :------------------------------------ |
-| React         | N/A     | Vite            | (External Crypto APIs - not specified) |
-| RainbowKit    | Redux   | TypeScript      |                                       |
-| Wagmi         |         | Tailwind CSS    |                                       |
-| React-Query   |         | ESLint, Prettier|                                       |
-| Chart.js      |         |                 |                                       |
+| Frontend    | Backend | Tools            | APIs                                   |
+| :---------- | :------ | :--------------- | :------------------------------------- |
+| React       | N/A     | Vite             | (External Crypto APIs - not specified) |
+| RainbowKit  | Redux   | TypeScript       |                                        |
+| Wagmi       |         | Tailwind CSS     |                                        |
+| React-Query |         | ESLint, Prettier |                                        |
+| Chart.js    |         |                  |                                        |
 
 ## 📦 Installation
 
@@ -62,7 +62,8 @@ This project aims to provide a user-friendly interface for tracking and managing
 
 The project requires the following environment variables:
 
--   `VITE_SOME_KEY`: Some Value (Example)
+- `VITE_WALLETCONNECT_PROJECT_ID`=
+- `VITE_APP_NAME`=
 
 ## 🚀 Usage
 
@@ -112,7 +113,7 @@ Please ensure your code adheres to the project's coding standards and includes a
 
 ## 🧪 Testing
 
-(Add information about testing, if applicable.  If no specific testing framework is set up, you can leave a placeholder like this.)
+(Add information about testing, if applicable. If no specific testing framework is set up, you can leave a placeholder like this.)
 
 Testing is not yet implemented in this project.
 
@@ -127,3 +128,7 @@ If you have any questions, suggestions, or issues, please feel free to open an i
 ## 🌟 Show Your Support
 
 Give a ⭐️ to this project if you like it!
+
+### This Readme file is generates with
+
+[[Markscribe](https://markscribe.vercel.app/)]
